@@ -1,7 +1,7 @@
-APSS
-====
+# APSS
+<img src="https://raw.githubusercontent.com/CPBach/APSS/master/APSS/screenshot.png" align="left" hspace="10" vspace="6">
 
-Another plate solving software - Identify stars in the nightsky
+**APSS - Another plate solving software** is a Java program to identify the stars in the nightsky by given pictures shot with dslr's or telescopes.
 
 The goal of this project is to have a Java-Open-source plate solving software,
 like already existing with astrometry.net.
