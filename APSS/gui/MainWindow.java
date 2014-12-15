@@ -85,10 +85,6 @@ public class MainWindow {
 	}
 	
 
-	public static void main(String[] args){
-		
-	}
-	
 
 	
 	
@@ -117,7 +113,7 @@ public class MainWindow {
 		frmMain.getContentPane().add(scrlDeclination);
 		
 		JLabel lblProjectingDistance = new JLabel("Projecting distance: ");
-		lblProjectingDistance.setBounds(567, 24, 133, 14);
+		lblProjectingDistance.setBounds(567, 24, 153, 14);
 		frmMain.getContentPane().add(lblProjectingDistance);
 		
 		scrlAscension = new JScrollBar();
@@ -183,11 +179,11 @@ public class MainWindow {
 		frmMain.getContentPane().add(lblNumberOfStars);
 		
 		JLabel lblProjDistanceArcmin = new JLabel("1234");
-		lblProjDistanceArcmin.setBounds(710, 24, 40, 14);
+		lblProjDistanceArcmin.setBounds(710, 24, 100, 14);
 		frmMain.getContentPane().add(lblProjDistanceArcmin);
 		
 		JLabel lblArcmin = new JLabel("arcmin");
-		lblArcmin.setBounds(760, 24, 46, 14);
+		lblArcmin.setBounds(760, 24, 100, 14);
 		frmMain.getContentPane().add(lblArcmin);
 		
 		JLabel lblStarNumber = new JLabel("0");
@@ -203,7 +199,7 @@ public class MainWindow {
 		frmMain.getContentPane().add(lblMag);
 		
 		JLabel lblBrightStarCatalog = new JLabel("Bright star catalog:");
-		lblBrightStarCatalog.setBounds(10, 24, 117, 14);
+		lblBrightStarCatalog.setBounds(10, 24, 157, 14);
 		frmMain.getContentPane().add(lblBrightStarCatalog);
 	}
 	
