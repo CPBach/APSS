@@ -39,7 +39,7 @@ public class Controller {
 	double ra = 0;
 	double dec = 0;
 	double projDist = 200;
-	int mag = 500;
+	int mag = 300;
 	int rot = 0;
 	
 	
