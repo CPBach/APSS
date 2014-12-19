@@ -34,7 +34,7 @@ public class Controller {
 	private MainWindow mw;
 	private ListenerClass listenerClass;
 	private LibraryController libraryController;
-	
+	private MainWindow test;
 	
 	double ra = 0;
 	double dec = 0;
