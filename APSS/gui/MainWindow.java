@@ -52,6 +52,7 @@ public class MainWindow {
 	
 	private JFrame frmMain;
 	private JScrollBar scrlRot,scrlAscension,scrlDeclination,scrlMag,scrlProjDistance;
+	private JLabel lblRotNumber, lblRaNumber,lblDeclNumber;
 
 	private MainWindow window;
 	
@@ -105,6 +106,7 @@ public class MainWindow {
 		frmMain.getContentPane().add(scanvas);
 		
 		scrlDeclination = new JScrollBar();
+		scrlDeclination.setUnitIncrement(-1);
 		scrlDeclination.setMaximum(90);
 		scrlDeclination.setMinimum(-90);
 
@@ -117,8 +119,11 @@ public class MainWindow {
 		frmMain.getContentPane().add(lblProjectingDistance);
 		
 		scrlAscension = new JScrollBar();
+		scrlAscension.setUnitIncrement(1);
+		scrlAscension.setValue(24);
 		scrlAscension.setBlockIncrement(1);
-		scrlAscension.setMaximum(24);
+		scrlAscension.setMinimum(0);
+		scrlAscension.setMaximum(34);
 
 		scrlAscension.setOrientation(JScrollBar.HORIZONTAL);
 		scrlAscension.setBounds(10, 558, 500, 14);
@@ -126,7 +131,7 @@ public class MainWindow {
 		frmMain.getContentPane().add(scrlAscension);
 		
 		JLabel lblRotation = new JLabel("Rotation:");
-		lblRotation.setBounds(566, 173, 79, 14);
+		lblRotation.setBounds(567, 173, 79, 14);
 		frmMain.getContentPane().add(lblRotation);
 		
 		scrlRot = new JScrollBar();
@@ -162,7 +167,7 @@ public class MainWindow {
 		lblRightAscension.setBounds(10, 583, 106, 14);
 		frmMain.getContentPane().add(lblRightAscension);
 		
-		JLabel lblRaNumber = new JLabel("0");
+		lblRaNumber = new JLabel("0");
 		lblRaNumber.setBounds(126, 583, 17, 14);
 		frmMain.getContentPane().add(lblRaNumber);
 		
@@ -170,7 +175,7 @@ public class MainWindow {
 		lblDeclination.setBounds(153, 583, 79, 14);
 		frmMain.getContentPane().add(lblDeclination);
 		
-		JLabel lblDeclNumber = new JLabel("0");
+		lblDeclNumber = new JLabel("0");
 		lblDeclNumber.setBounds(253, 583, 46, 14);
 		frmMain.getContentPane().add(lblDeclNumber);
 		
@@ -201,6 +206,10 @@ public class MainWindow {
 		JLabel lblBrightStarCatalog = new JLabel("Bright star catalog:");
 		lblBrightStarCatalog.setBounds(10, 24, 157, 14);
 		frmMain.getContentPane().add(lblBrightStarCatalog);
+		
+		lblRotNumber = new JLabel("0");
+		lblRotNumber.setBounds(705, 173, 46, 14);
+		frmMain.getContentPane().add(lblRotNumber);
 	}
 	
 	private void addListeners(){
@@ -209,5 +218,13 @@ public class MainWindow {
 		scrlAscension.addAdjustmentListener(lc);
 		scrlDeclination.addAdjustmentListener(lc);
 		scrlProjDistance.addAdjustmentListener(lc);
+	}
+
+	public void setLabels(String rightAscension, String declination,
+			String rotation) {
+		lblRaNumber.setText(rightAscension);
+		lblDeclNumber.setText(declination);
+		lblRotNumber.setText(rotation);
+		
 	}
 }

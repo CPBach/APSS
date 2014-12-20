@@ -26,7 +26,6 @@ import java.awt.event.AdjustmentListener;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
-import javax.swing.JButton;
 
 public class ListenerClass extends JFrame implements ActionListener, AdjustmentListener{
 
@@ -42,10 +41,16 @@ public class ListenerClass extends JFrame implements ActionListener, AdjustmentL
 		JScrollBar bar = (JScrollBar) e.getSource();
 		String name = bar.getName();
 		int val = bar.getValue();
-		if(name=="scrlAscension")
+		if(name=="scrlAscension"){
+			System.out.println("RA from scrollbar:" + val);
 			ctrl.ascensionChanged(val);
-		else if(name =="scrlDeclination")
+		}
+		else if(name =="scrlDeclination"){
+			System.out.println("dec from scrollbar:" + val);
 			ctrl.declinationChanged(val);
+			
+		}
+			
 		else if(name =="scrlMag")
 			ctrl.magnitudeChanged(val);
 		else if(name =="scrlRot")
@@ -60,7 +65,5 @@ public class ListenerClass extends JFrame implements ActionListener, AdjustmentL
 		// TODO Auto-generated method stub
 
 	}
-	
-	
 
 }

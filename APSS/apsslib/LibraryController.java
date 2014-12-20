@@ -25,6 +25,7 @@ import java.util.Iterator;
 public class LibraryController {
 	StarCatalog sc;
 	ArrayList<Star> stars;
+	ProjectorTest pt;
 
 	private final double SEARCHRADIUS = 250;
 	private double R;
@@ -52,7 +53,7 @@ public class LibraryController {
 
 		// Set referencePoint and generate Orthonormalbasis
 		double[] centerPoint = { ra, decl, projDist };
-		ProjectorTest pt = new ProjectorTest(centerPoint);
+		pt = new ProjectorTest(centerPoint);
 
 		double[] sphereCoord = new double[3];
 		double[] b1b2lambda = new double[3];
@@ -93,8 +94,33 @@ public class LibraryController {
 			if (b1Int < 500 && b2Int < 500 && b1Int >= 0 && b2Int >= 0) {
 				resMatrix[b1Int][b2Int] = 0xffffff;
 			}
+			else{
+				//System.out.println("Star is outside...");
+			}
 		}
 		return resMatrix;
+	}
+
+	public String getRightAscension() {
+		double ra = pt.getRightAscension();
+		int hours;
+		
+		hours = (int)(ra / (Math.PI / 12));
+		
+		String res = new String();
+		res += hours;
+		
+		return res;
+	}
+
+	public String getDeclination() {
+		// TODO Auto-generated method stub
+		return "00";
+	}
+
+	public String getRotation() {
+		// TODO Auto-generated method stub
+		return "00";
 	}
 
 }

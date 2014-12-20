@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package controller;
 
+import java.util.concurrent.Delayed;
+
 import apsslib.LibraryController;
 import gui.MainWindow;
 
@@ -61,7 +63,12 @@ public class Controller {
 	
 	private void reCalcAndPaint(){
 		int[][] matrix;
+		String rightAscension,declination,rotation;
 		matrix = libraryController.generateMatrix(ra, dec, projDist, mag, rot);
+		rightAscension = libraryController.getRightAscension();
+		declination = libraryController.getDeclination();
+		rotation = libraryController.getRotation();
+		mw.setLabels(rightAscension,declination,rotation);
 		mw.scanvas.setMatrix(matrix);
 	}
 

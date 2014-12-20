@@ -27,13 +27,23 @@ public class ProjectorTest {
 	
 	// We're centering all around the referencePoint/reference Star
 	private double[] referencePoint;
+	private double[] refPointSphere;
 	// Contains the basis for the plane where we're going to project other stars
 	private double[][] basis = {{0,0,0},{0,0,0}};
 	
 
 	public ProjectorTest(double[] spherePoint) {
+		refPointSphere = spherePoint;
 		referencePoint = sphereToEuclid(spherePoint);
-		generateOrthonormalbasis();
+		//generateOrthonormalbasis();
+		genOrthonormalBasisEnhanced();
+	}
+	
+	public double getRightAscension(){
+		return refPointSphere[0];
+	}
+	public double getDeclination(){
+		return refPointSphere[1];
 	}
 	public void printBasis(){
 		System.out.println(
@@ -45,10 +55,31 @@ public class ProjectorTest {
 		System.out.println("Basis-vector2: " + basis[1][0] + " "+ basis[1][1]  + " " + basis[1][2]);
 	}
 	
+	private void genOrthonormalBasisEnhanced(){
+		double[] b1 = new double[3];
+		double[] b2 = new double[3];
+		
+		
+		b1[0] = refPointSphere[0]+PI/2;;
+		b1[1] = refPointSphere[1];
+		b1[2] = refPointSphere[2];
+
+		b2[0] = refPointSphere[0];
+		b2[1] = refPointSphere[1]+PI/2;
+		b2[2] = refPointSphere[2];
+		
+		
+		basis[0] = normVector(sphereToEuclid(b1));
+		basis[1] = normVector(sphereToEuclid(b2));
+		printBasis();
+	}
+	
+	@Deprecated
 	private void generateOrthonormalbasis(){
 		/** 
 		 * Main method for generating the
-		 * orthonormal basis.
+		 * orthonormal basis. (Pretty stupid)
+		 * 
 		 */
 		// Try 3 rotations, take the one with biggest distance
 		double[] v_x, v_y,v_z;
