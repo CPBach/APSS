@@ -47,6 +47,9 @@ public class ListenerClass extends JFrame implements ActionListener, AdjustmentL
 		}
 		else if(name =="scrlDeclination"){
 			System.out.println("dec from scrollbar:" + val);
+			if(val == 45){
+				System.out.println("Break it down");
+			}
 			ctrl.declinationChanged(val);
 			
 		}

@@ -103,24 +103,44 @@ public class LibraryController {
 
 	public String getRightAscension() {
 		double ra = pt.getRightAscension();
-		int hours;
+		int hours,minutes;
+		float seconds;
 		
 		hours = (int)(ra / (Math.PI / 12));
+		ra-=hours*Math.PI / 12;
+		
+		minutes = (int)(ra / (Math.PI / (12*60)));
+		ra+=minutes*Math.PI/(12*60);
+		
+		seconds = (int)(ra / (Math.PI / (12*60*60)));
 		
 		String res = new String();
-		res += hours;
+		res += hours +"h:"+minutes+"m:"+seconds+"s";
 		
 		return res;
 	}
 
 	public String getDeclination() {
-		// TODO Auto-generated method stub
-		return "00";
+		double decl = pt.getDeclination();
+		int degs=0,minutes=0;
+		float seconds=0;
+		
+		degs = (int)(2/Math.PI * 90 * decl);
+		decl-= degs * 2*Math.PI / 360;
+		
+		decl = Math.abs(decl);
+		
+		minutes = (int)(decl/(360*60 / (2*Math.PI)));
+		decl -= minutes * (360*60/(2*Math.PI));
+		
+		seconds = (float)(decl/(360*60*60 / (2*Math.PI)));
+		
+		String res = new String();
+		res += degs +"°"+minutes+"'"+seconds+"''";
+		
+		return res;
 	}
 
-	public String getRotation() {
-		// TODO Auto-generated method stub
-		return "00";
-	}
+
 
 }

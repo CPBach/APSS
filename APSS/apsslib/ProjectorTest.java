@@ -37,6 +37,7 @@ public class ProjectorTest {
 		referencePoint = sphereToEuclid(spherePoint);
 		//generateOrthonormalbasis();
 		genOrthonormalBasisEnhanced();
+		//genOrthonormalBasisEnhanced2();
 	}
 	
 	public double getRightAscension(){
@@ -53,6 +54,27 @@ public class ProjectorTest {
 						+ referencePoint[2] +").");
 		System.out.println("Basis-vector1: " + basis[0][0] + " "+ basis[0][1]  + " " + basis[0][2]);
 		System.out.println("Basis-vector2: " + basis[1][0] + " "+ basis[1][1]  + " " + basis[1][2]);
+	}
+	
+	private void genOrthonormalBasisEnhanced2(){
+		// Radius of the point
+		double r = refPointSphere[2];
+	
+		double[] fixed_b1 = {0, 1,0};
+		double[] fixed_b2 = {0,0,1};
+		
+		
+		
+		/* Helping text
+		double[][] array = {{basis[0][0],basis[1][0], -euclidPoint[0]},
+				{basis[0][1],basis[1][1], -euclidPoint[1]},
+				{basis[0][2],basis[1][2], -euclidPoint[2]}};
+		Matrix A = new Matrix(array);
+		double[][] loes = {{-referencePoint[0]},{-referencePoint[1]},{-referencePoint[2]}};
+		Matrix b = new Matrix(loes);
+		Matrix x = A.solve(b);
+		*/
+		
 	}
 	
 	private void genOrthonormalBasisEnhanced(){

@@ -107,7 +107,6 @@ public class MainWindow {
 		
 		scrlDeclination = new JScrollBar();
 		scrlDeclination.setUnitIncrement(-1);
-		scrlDeclination.setMaximum(90);
 		scrlDeclination.setMinimum(-90);
 
 		scrlDeclination.setBounds(516, 52, 17, 500);
@@ -168,19 +167,19 @@ public class MainWindow {
 		frmMain.getContentPane().add(lblRightAscension);
 		
 		lblRaNumber = new JLabel("0");
-		lblRaNumber.setBounds(126, 583, 17, 14);
+		lblRaNumber.setBounds(126, 583, 126, 14);
 		frmMain.getContentPane().add(lblRaNumber);
 		
 		JLabel lblDeclination = new JLabel("Declination:");
-		lblDeclination.setBounds(153, 583, 79, 14);
+		lblDeclination.setBounds(431, 583, 79, 14);
 		frmMain.getContentPane().add(lblDeclination);
 		
 		lblDeclNumber = new JLabel("0");
-		lblDeclNumber.setBounds(253, 583, 46, 14);
+		lblDeclNumber.setBounds(516, 583, 46, 14);
 		frmMain.getContentPane().add(lblDeclNumber);
 		
 		JLabel lblNumberOfStars = new JLabel("Number of stars:");
-		lblNumberOfStars.setBounds(315, 583, 106, 14);
+		lblNumberOfStars.setBounds(589, 583, 106, 14);
 		frmMain.getContentPane().add(lblNumberOfStars);
 		
 		JLabel lblProjDistanceArcmin = new JLabel("1234");
@@ -192,7 +191,7 @@ public class MainWindow {
 		frmMain.getContentPane().add(lblArcmin);
 		
 		JLabel lblStarNumber = new JLabel("0");
-		lblStarNumber.setBounds(487, 583, 46, 14);
+		lblStarNumber.setBounds(705, 583, 46, 14);
 		frmMain.getContentPane().add(lblStarNumber);
 		
 		JLabel label_3 = new JLabel("0");
@@ -220,11 +219,10 @@ public class MainWindow {
 		scrlProjDistance.addAdjustmentListener(lc);
 	}
 
-	public void setLabels(String rightAscension, String declination,
-			String rotation) {
+	public void setLabels(String rightAscension, String declination) {	
 		lblRaNumber.setText(rightAscension);
 		lblDeclNumber.setText(declination);
-		lblRotNumber.setText(rotation);
+		lblRotNumber.setText(Integer.toString(scrlRot.getValue()) + "°");
 		
 	}
 }

@@ -67,8 +67,7 @@ public class Controller {
 		matrix = libraryController.generateMatrix(ra, dec, projDist, mag, rot);
 		rightAscension = libraryController.getRightAscension();
 		declination = libraryController.getDeclination();
-		rotation = libraryController.getRotation();
-		mw.setLabels(rightAscension,declination,rotation);
+		mw.setLabels(rightAscension,declination);
 		mw.scanvas.setMatrix(matrix);
 	}
 
@@ -89,7 +88,7 @@ public class Controller {
 		 */
 		// Declination arrives in form: -90..90
 		// has to be turned to -pi to +pi
-		dec = val * Math.PI/90;
+		dec = val * Math.PI/180;
 		reCalcAndPaint();
 		
 	}
@@ -106,7 +105,8 @@ public class Controller {
 	}
 
 	public void rotationChanged(int val) {
-		// TODO Implement rotation
+		this.rot = val;
+		reCalcAndPaint();
 		
 	}
 	
