@@ -25,6 +25,8 @@ public class ProjectorTest {
 	
 	final double PI = Math.PI;
 	
+	private final double[] initialRefPoint = {0,0,0};
+	
 	// We're centering all around the referencePoint/reference Star
 	private double[] referencePoint;
 	private double[] refPointSphere;
@@ -33,11 +35,14 @@ public class ProjectorTest {
 	
 
 	public ProjectorTest(double[] spherePoint) {
+		// Initial Ref Point: (x,y,z) = (r,0,0)
+		initialRefPoint[0] = spherePoint[2];
+		
 		refPointSphere = spherePoint;
 		referencePoint = sphereToEuclid(spherePoint);
 		//generateOrthonormalbasis();
-		genOrthonormalBasisEnhanced();
-		//genOrthonormalBasisEnhanced2();
+		//genOrthonormalBasisEnhanced();
+		genOrthonormalBasisEnhanced2();
 	}
 	
 	public double getRightAscension(){
@@ -57,12 +62,19 @@ public class ProjectorTest {
 	}
 	
 	private void genOrthonormalBasisEnhanced2(){
-		// Radius of the point
-		double r = refPointSphere[2];
-	
-		double[] fixed_b1 = {0, 1,0};
+		double[] fixed_b1 = {0,1,0};
 		double[] fixed_b2 = {0,0,1};
 		
+		// DO we really need to norm the cross product?
+		// TODO: Ckech that
+		double[] rotAxis = normVector(cross_product(initialRefPoint, referencePoint));
+		double rotAngle = Math.acos(dot_product(initialRefPoint, referencePoint)/
+									norm(initialRefPoint) / norm(referencePoint));
+		RotationMatrix rm = new RotationMatrix(rotAxis,rotAngle);
+		// Are vectors normed to 1 after rotation?
+		// TODO: CCHECK
+		basis[0] = normVector(rm.rotateVector(fixed_b1));
+		basis[1] = normVector(rm.rotateVector(fixed_b2));
 		
 		
 		/* Helping text
