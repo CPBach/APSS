@@ -72,9 +72,12 @@ public class Controller {
 	}
 
 	public void ascensionChanged(int val) {
-		// Ascension arrives in form: 0..24
+		// Ascension arrives in form: 0..2400
 		// has to be turned to 0..2*PI
-		ra = val * Math.PI/12;
+		
+		double new_val = ((double)val)/100;
+		
+		ra = new_val * Math.PI/12;
 		reCalcAndPaint();
 		
 	}

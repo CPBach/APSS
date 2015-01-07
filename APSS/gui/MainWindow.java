@@ -106,7 +106,6 @@ public class MainWindow {
 		frmMain.getContentPane().add(scanvas);
 		
 		scrlDeclination = new JScrollBar();
-		scrlDeclination.setUnitIncrement(-1);
 		scrlDeclination.setMinimum(-90);
 
 		scrlDeclination.setBounds(516, 52, 17, 500);
@@ -122,7 +121,7 @@ public class MainWindow {
 		scrlAscension.setValue(24);
 		scrlAscension.setBlockIncrement(1);
 		scrlAscension.setMinimum(0);
-		scrlAscension.setMaximum(34);
+		scrlAscension.setMaximum(2410);
 
 		scrlAscension.setOrientation(JScrollBar.HORIZONTAL);
 		scrlAscension.setBounds(10, 558, 500, 14);

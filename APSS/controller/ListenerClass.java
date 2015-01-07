@@ -42,11 +42,9 @@ public class ListenerClass extends JFrame implements ActionListener, AdjustmentL
 		String name = bar.getName();
 		int val = bar.getValue();
 		if(name=="scrlAscension"){
-			System.out.println("RA from scrollbar:" + val);
 			ctrl.ascensionChanged(val);
 		}
 		else if(name =="scrlDeclination"){
-			System.out.println("dec from scrollbar:" + val);
 			if(val == 45){
 				System.out.println("Break it down");
 			}

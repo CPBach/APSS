@@ -42,7 +42,8 @@ public class ProjectorTest {
 		referencePoint = sphereToEuclid(spherePoint);
 		//generateOrthonormalbasis();
 		//genOrthonormalBasisEnhanced();
-		genOrthonormalBasisEnhanced2();
+		//genOrthonormalBasisEnhanced2();
+		genOrthonormalBasisEnhanced3();
 	}
 	
 	public double getRightAscension(){
@@ -60,32 +61,50 @@ public class ProjectorTest {
 		System.out.println("Basis-vector1: " + basis[0][0] + " "+ basis[0][1]  + " " + basis[0][2]);
 		System.out.println("Basis-vector2: " + basis[1][0] + " "+ basis[1][1]  + " " + basis[1][2]);
 	}
+	private void genOrthonormalBasisEnhanced3(){
+		double[] fixed_b1 = {0,-1,0};
+		
+		basis[0][0] = -fixed_b1[1] * Math.sin(getRightAscension());
+		basis[0][1] = fixed_b1[1] * Math.cos(getRightAscension());
+		
+		double[] refPointNormed = normVector(referencePoint);
+		
+		double[][] eq = {{ refPointNormed[1], refPointNormed[2]},
+						 { basis[0][1], basis[0][2]}};
+		
+		double[][] rhs = { {- refPointNormed[0]}, {-basis[0][0]}};
+		
+		Matrix A = new Matrix(eq);
+		Matrix b = new Matrix(rhs);
+		Matrix x = A.solve(b);
+		
+		double[] res = { 1, x.get(0, 0), -Math.abs(x.get(1, 0))};
+		basis[1] = normVector(res);
+		printBasis();
+		
+		
+
+		
+	}
+
 	
 	private void genOrthonormalBasisEnhanced2(){
-		double[] fixed_b1 = {0,1,0};
-		double[] fixed_b2 = {0,0,1};
+		double[] fixed_b1 = {0,-1,0};
+		double[] fixed_b2 = {0,0,-1};
 		
 		// DO we really need to norm the cross product?
 		// TODO: Ckech that
 		double[] rotAxis = normVector(cross_product(initialRefPoint, referencePoint));
 		double rotAngle = Math.acos(dot_product(initialRefPoint, referencePoint)/
 									norm(initialRefPoint) / norm(referencePoint));
+		System.out.println("Rot angle:" + rotAngle);
 		RotationMatrix rm = new RotationMatrix(rotAxis,rotAngle);
 		// Are vectors normed to 1 after rotation?
 		// TODO: CCHECK
 		basis[0] = normVector(rm.rotateVector(fixed_b1));
 		basis[1] = normVector(rm.rotateVector(fixed_b2));
 		
-		
-		/* Helping text
-		double[][] array = {{basis[0][0],basis[1][0], -euclidPoint[0]},
-				{basis[0][1],basis[1][1], -euclidPoint[1]},
-				{basis[0][2],basis[1][2], -euclidPoint[2]}};
-		Matrix A = new Matrix(array);
-		double[][] loes = {{-referencePoint[0]},{-referencePoint[1]},{-referencePoint[2]}};
-		Matrix b = new Matrix(loes);
-		Matrix x = A.solve(b);
-		*/
+		printBasis();
 		
 	}
 	
@@ -298,7 +317,7 @@ public class ProjectorTest {
 		return retVec;
 		
 	}
-	
+	@Deprecated
 	private double[] rotate(double[] vector, char axis){
 		/**
 		 * This method rotates a vector around a given axis.
