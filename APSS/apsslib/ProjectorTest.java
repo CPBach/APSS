@@ -82,9 +82,6 @@ public class ProjectorTest {
 		basis[1] = normVector(res);
 		printBasis();
 		
-		
-
-		
 	}
 
 	
